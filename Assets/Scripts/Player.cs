@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
     public void Damage(int damage)
     {
         ourHealth -= damage;
-        gameObject.GetComponent<Animation>().Play("redflash");
+        //gameObject.GetComponent<Animation>().Play("redflash");
     }
 
     public void Knockback(float Knockpow, Vector2 Knockdir)
