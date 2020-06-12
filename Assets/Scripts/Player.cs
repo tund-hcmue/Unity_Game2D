@@ -13,12 +13,14 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D r2;
     public Animator anim;
+    public gamemaster gm;
 
     // Use this for initialization
     void Start()
     {
         r2 = gameObject.GetComponent<Rigidbody2D>();
         anim = gameObject.GetComponent<Animator>();
+        gm = GameObject.FindGameObjectWithTag("gamemaster").GetComponent<gamemaster>();
         ourHealth = maxhealth;
     }
 
@@ -105,6 +107,8 @@ public class Player : MonoBehaviour
     public void Death()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (PlayerPrefs.GetInt("highscore") < gm.points)
+            PlayerPrefs.SetInt("highscore", gm.points);
     }
 
     public void Damage(int damage)
@@ -117,5 +121,15 @@ public class Player : MonoBehaviour
     {
         r2.velocity = new Vector2(0, 0);
         r2.AddForce(new Vector2(Knockdir.x * -100, Knockdir.y * Knockpow));
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Coins"))
+        {
+            Destroy(col.gameObject);
+            gm.points += 1;
+        }
+        
     }
 }

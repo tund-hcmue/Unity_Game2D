@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spikes : MonoBehaviour
 {
     public Player player;
-
+    public int damage = 2;
 
     // Use this for initialization
     void Start()
@@ -17,7 +17,7 @@ public class Spikes : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            player.Damage(2);
+            player.Damage(damage);
             player.Knockback(400f, player.transform.position);
         }
     }

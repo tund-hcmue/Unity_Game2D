@@ -50,7 +50,7 @@ public class TurretAI : MonoBehaviour
             lookingRight = false;
         }
 
-        if (curHealth < 0)
+        if (curHealth <= 0)
         {
             Destroy(gameObject);
         }

@@ -13,6 +13,7 @@ public class Enemies : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     void Damage(int damage)
